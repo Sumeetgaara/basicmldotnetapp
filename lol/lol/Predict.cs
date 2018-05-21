@@ -8,6 +8,6 @@ namespace lol
     public class Predict
     {
         [ColumnName("Score")]
-        public int price;
+        public float price;
     }
 }

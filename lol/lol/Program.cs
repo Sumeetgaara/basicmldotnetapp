@@ -9,9 +9,9 @@ namespace lol
 {
     class Program
     {
-        const string DataPath = @"C:\Users\Sneha More\Documents\Visual Studio 2017\Projects\ML_APP\ML_APP\bin\Data\trin.csv";
-        const string TestDataPath = @"C:\Users\Sneha More\Documents\Visual Studio 2017\Projects\ML_APP\ML_APP\bin\Data\tst.csv";
-        const string ModelPath = @"......\Models\Model.zip";
+        const string DataPath = @"C:\Users\Sneha More\Documents\Visual Studio 2017\Projects\lol\lol\bin\Data\trin.csv";
+        const string TestDataPath = @"C:\Users\Sneha More\Documents\Visual Studio 2017\Projects\lol\lol\bin\Data\tst.csv";
+        const string ModelPath = @"C:\Users\Sneha More\Documents\Visual Studio 2017\Projects\lol\lol\bin\Data\Models\Models.zip";
         static async Task Main(string[] args)
         {
             try
@@ -38,7 +38,7 @@ namespace lol
                                         "month",
                                         "year",
                                         "price"));
-                new FastTreeRegressor();
+                pipeline.Add(new FastForestRegressor());
                 PredictionModel<RandomFone, Predict> model = pipeline.Train<RandomFone, Predict>();
                 await model.WriteAsync(ModelPath);
                 return model;
@@ -58,7 +58,7 @@ namespace lol
                 var testData = new TextLoader<RandomFone>(TestDataPath, useHeader: true, separator: ",");
                 var evaluator = new RegressionEvaluator();
                 RegressionMetrics metrics = evaluator.Evaluate(model, testData);
-                Console.WriteLine("RSquared = " + metrics.RSquared);
+                Console.WriteLine("Rms=" + metrics.Rms);
             }
             catch (Exception ex)
             {

@@ -8,10 +8,10 @@ namespace lol
     public class RandomFone
     {
         [Column(ordinal: "0")]
-        public int month;
+        public float month;
         [Column(ordinal: "1")]
-        public int year;
+        public float year;
         [Column(ordinal: "2")]
-        public int price;
+        public float price;
     }
 }
